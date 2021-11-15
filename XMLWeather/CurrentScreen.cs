@@ -6,11 +6,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Net;
+using System.Xml;
 
 namespace XMLWeather
 {
     public partial class CurrentScreen : UserControl
     {
+
         public CurrentScreen()
         {
             InitializeComponent();
@@ -32,6 +35,18 @@ namespace XMLWeather
 
             ForecastScreen fs = new ForecastScreen();
             f.Controls.Add(fs);
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            Form1.days.Clear();
+            Form1.place = inputTextBox.Text;
+
+            Form1.ExtractForecast();
+            Form1.ExtractCurrent();
+
+            DisplayCurrent();
+            Refresh();
         }
     }
 }
